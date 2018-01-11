@@ -23,7 +23,7 @@
     "util.promisify": "^1.0.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^5.2.5",
+    "@commitlint/cli": "^6.0.0",
     "@commitlint/config-conventional": "^5.2.3",
     "eslint": "^4.13.1",
     "eslint-config-simenb-base": "^14.0.0",
