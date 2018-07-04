@@ -14,6 +14,8 @@ you.
 The advantage of the native `realpath` over `fs.realpath` is that the native one
 better supports paths on Windows.
 
+On node 4 the function uses the old `fs.realpath` function.
+
 ## Install
 
 Install the module with `npm`:
