@@ -33,7 +33,7 @@ function realpathSync(filepath) {
 
   if (fsBinding.realpath) {
     try {
-      return process.binding('fs').realpath(filepath, 'utf8');
+      return fsBinding.realpath(filepath, 'utf8');
     } catch (err) {
       /* Probably RAM-disk on windows. */
     }
