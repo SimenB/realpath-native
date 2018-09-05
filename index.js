@@ -32,7 +32,10 @@ function realpathSync(filepath) {
   const fsBinding = process.binding('fs');
 
   if (fsBinding.realpath) {
-    return process.binding('fs').realpath(filepath, 'utf8');
+    try
+    {
+      return process.binding('fs').realpath(filepath, 'utf8');
+    } catch(err) { /* Probably RAM-disk on windows. */ }
   }
 
   return fs.realpathSync(filepath);
