@@ -17,11 +17,11 @@ after_script: greenkeeper-lockfile-upload
 jobs:
   include:
   - stage: release
-    node_js: 8
-    os: linux
-    after_success:
-    - yarn add -D semantic-release@11.0.1
-    - yarn semantic-release
+    node_js: lts/*
+    deploy:
+      provider: script
+      skip_cleanup: true
+      script: npx semantic-release@15
 cache:
   yarn: true
 branches:
@@ -29,8 +29,5 @@ branches:
   - master
   - next
   - "/^greenkeeper/.*$/"
-env:
-  global:
-  - BUILD_LEADER_ID=5
-  - secure: q25gRjTQlwwMWrTB8gxZCG9GtHu0dLVVSaYYHi6ZrGpqXU7L6vNrc4z33al0zZ4mtyFGc3i3gl7DiwoOAJKCyhnrZ3Q9AOczJZSYBs8MiwcDJ0DMtvlqoH90G/cpANcyIFTW91nDmjBIbnMbNwz6OIZ+tM7jGhtElmrbm/fW5yKQ8Hya2i2J7OTrGwx0oPogQz9jPi4BrbwyG1DL3emqkgtEmISWA05vl6AE0fqKZ5fWqb4baLl266ucoHvAQKQdyGD55wBjNqfI4Lo8WRHH7nvK7WZkgsDzi5XinSvZYzbgmeVY53wC26smYQX4IekSCWV2qy5TQ5eSIWliiWsG9I6sjPEPZA45+hs4JXekznvPIxm9lfG7c0n2RtpUDDepW+8/Ysyr5RhOjVHlEthbszj14TJF2OmFC6BLRcT2fnPqDGkS0qfFzatRSm0f8isEFLkgfgHrhOut8zHy6k3qmnilF15LlvN9sTPNBYxpt5icMzWwGa9ukT0qHF1/kVejTQwLuvcmGSQLC5uwhX8TKlAi5+ml+KJy/RXTlSDM71V8fFq4AFjPp7AVKq0lZlBcapxFHO04V4DmTfptCespcogq6LbpjPqwltFRJt0mHCJHGcXyUKJyAQx1eoWeLND3bBNWkEiSYDQnki3KcNT7yTgxcJMWBWelRh3O9UrVulE=
-  - secure: uE6twFHqmrOmW+jMQVEhVGGsr7tMtqJ0lXMpzUWbb2AnT3idsY4mOFz2ytUT+DVmKSa5ueeHB4jelPRgvooWJT2MWhXDGxah4+lmf6pu0c39YR0z1yNvAClo+3+dj8xCdtSlmTCeqgILzOBt5GptWDmCk+a7hTzxIdPjZTanrIc+/pcui673QEM27JnoL+k3WlXELKjMs10UqdTQrauUeCWhWjhznzLZImp2qWST30UE63KFX2LwYE8qFesIiVSe+Im5MfmvBgQcIj1MsC3uRZqWT719rqv3y9bUet0MkbXPXqJimouCIWwwaBfSkzo0mfj0ImMRij5LQHYqGe6RwAMKQkXK1Jc+pO15Fyfl/V7RlvKsIK6oT8ArpOFBadpsP8iFhv4bWla+9wdb5rfsTuJXbI69iVpGAt9iDn8+Xxv+PWYsWAeSjDxXWDYe5lqYIX21MC2+NGfsxstZQ1zIw7AeWfX/UoPrFTlTxwDlVGsvToprV4l65rpYGDqyLgt6Ta2SKtEYV5nVj2Eg2wHbAZUMQxpSRVjrSa0oSQVZWnsp821+DFKwJQp2cxVHwNn39bWjLdAhmTw/eUOWxI7h9U744GKKqzNpD0oB0M84AMtzmKjuBJn1kZpxcezDYeGoIMPmlwiaBhEBYrRWhDtYBb1oYzGBC7I3knyNskZ7h+M=
+  except:
+  - /^v\d+\.\d+\.\d+$/
