@@ -50,9 +50,10 @@
     lodash.pick "4.4.0"
     meow "3.7.0"
 
-"@commitlint/config-conventional@^6.0.2":
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/@commitlint/config-conventional/-/config-conventional-6.0.2.tgz#8ef87a6facb75b3377b2760b0e91097f8ec64db4"
+"@commitlint/config-conventional@^7.3.0":
+  version "7.3.0"
+  resolved "https://registry.yarnpkg.com/@commitlint/config-conventional/-/config-conventional-7.3.0.tgz#d76fa88e0a32e3768f103d84cd3413f750ac85d1"
+  integrity sha512-JKhQOfc+brEDUp/nDsNMOur8i1/Mbszd5hSdtUIiQqOjP294V99FrFytxOH4vIsInSrv6xagGxSE8J57wGQRxA==
 
 "@commitlint/core@^6.0.2":
   version "6.0.2"
