@@ -3,7 +3,7 @@
 const fs = require('fs');
 
 function callWithFallbacks(funcName, filepath) {
-  var fallbackToDefault = false;
+  let fallbackToDefault = false;
 
   try {
     if (typeof fs[funcName].native === 'function') {
@@ -40,7 +40,7 @@ function callWithFallbacks(funcName, filepath) {
 function realpath(filepath) {
   return new Promise((resolve, reject) => {
     try {
-      resolve(callWithFallbacks("realpath", filepath));
+      resolve(callWithFallbacks('realpath', filepath));
     } catch (e) {
       reject(e);
     }
@@ -48,7 +48,7 @@ function realpath(filepath) {
 }
 
 function realpathSync(filepath) {
-  return callWithFallbacks("realpathSync", filepath);
+  return callWithFallbacks('realpathSync', filepath);
 }
 
 module.exports = realpath;
