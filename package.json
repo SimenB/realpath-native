@@ -19,9 +19,6 @@
     "lint": "eslint .",
     "test": "eslint . && ava"
   },
-  "dependencies": {
-    "util.promisify": "^1.0.0"
-  },
   "devDependencies": {
     "@commitlint/cli": "^6.0.2",
     "@commitlint/config-conventional": "^6.0.2",

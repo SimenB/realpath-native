@@ -1,45 +1,53 @@
 'use strict';
 
 const fs = require('fs');
-const promisify = require('util.promisify');
 
-const promisiedFsRealpath = promisify(fs.realpath);
+function callWithFallbacks(funcName, filepath) {
+  var fallbackToDefault = false;
 
-function realpath(filepath) {
-  if (typeof fs.realpath.native === 'function') {
-    return promisify(fs.realpath.native)(filepath);
+  try {
+    if (typeof fs[funcName].native === 'function') {
+      return fs[funcName].native(filepath);
+    }
+  } catch (err) {
+    if (err.errno === -4068) {
+      /* Probably RAM-disk on windows.
+			   Go straight to the default js
+         implementation.  Otherwise the
+         fsBinding.realpath call may cause
+         the node runtime to abort.
+			 */
+    }
+    fallbackToDefault = true;
   }
-  const fsBinding = process.binding('fs');
 
-  if (fsBinding.realpath) {
-    return new Promise((resolve, reject) => {
+  if (!fallbackToDefault) {
+    const fsBinding = process.binding('fs');
+
+    if (fsBinding[funcName]) {
       try {
-        resolve(fsBinding.realpath(filepath, 'utf8'));
-      } catch (e) {
-        reject(e);
+        return fsBinding[funcName](filepath, 'utf8');
+      } catch (err) {
+        /* Probably RAM-disk on windows. */
       }
-    });
-  }
-
-  return promisiedFsRealpath(filepath);
-}
-
-function realpathSync(filepath) {
-  if (typeof fs.realpathSync.native === 'function') {
-    return fs.realpathSync.native(filepath);
-  }
-
-  const fsBinding = process.binding('fs');
-
-  if (fsBinding.realpath) {
-    try {
-      return fsBinding.realpath(filepath, 'utf8');
-    } catch (err) {
-      /* Probably RAM-disk on windows. */
     }
   }
 
-  return fs.realpathSync(filepath);
+  return fs[funcName](filepath);
+}
+
+function realpath(filepath) {
+  return new Promise((resolve, reject) => {
+    try {
+      resolve(callWithFallbacks("realpath", filepath));
+    } catch (e) {
+      reject(e);
+    }
+  });
+}
+
+function realpathSync(filepath) {
+  return callWithFallbacks("realpathSync", filepath);
 }
 
 module.exports = realpath;
