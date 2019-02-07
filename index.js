@@ -10,6 +10,7 @@ function callWithFallbacks(funcName, filepath) {
       return fs[funcName].native(filepath);
     }
   } catch (err) {
+    // -4068: EISDIR: illegal operation on a directory, realpath
     if (err.errno === -4068) {
       /* Probably RAM-disk on windows.
 			   Go straight to the default js
