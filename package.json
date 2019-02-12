@@ -2,8 +2,10 @@
   "name": "realpath-native",
   "version": "0.0.0-development",
   "main": "index.js",
+  "types": "index.d.ts",
   "files": [
-    "index.js"
+    "index.js",
+    "index.d.ts"
   ],
   "description": "Use the system's native `realpath`",
   "repository": "SimenB/realpath-native",
@@ -31,7 +33,7 @@
     "eslint-config-simenb-node": "^0.4.11",
     "husky": "^0.14.3",
     "lint-staged": "^6.0.0",
-    "prettier": "^1.9.2"
+    "prettier": "^1.16.4"
   },
   "commitlint": {
     "extends": [
@@ -48,7 +50,7 @@
       "eslint --fix",
       "git add"
     ],
-    "*.{md,json}": [
+    "*.{md,json,ts}": [
       "prettier --write",
       "git add"
     ]
