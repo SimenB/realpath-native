@@ -27,7 +27,10 @@ function callWithFallbacks(funcName, filepath) {
 
     if (fsBinding[funcName]) {
       try {
-        return fsBinding[funcName](filepath, 'utf8');
+        // There is no realpathSync in process.binding
+        // so we always call realpath
+        // see: https://github.com/SimenB/realpath-native/pull/36#issuecomment-463647901
+        return fsBinding.realpath(filepath, 'utf8');
       } catch (err) {
         /* Probably RAM-disk on windows. */
       }
