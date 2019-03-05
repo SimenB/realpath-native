@@ -28,7 +28,7 @@
     "@commitlint/cli": "^6.0.2",
     "@commitlint/config-conventional": "^6.0.2",
     "ava": "^0.25.0",
-    "eslint": "^4.13.1",
+    "eslint": "^5.15.1",
     "eslint-config-simenb-base": "^14.0.0",
     "eslint-config-simenb-node": "^0.4.11",
     "husky": "^0.14.3",
