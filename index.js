@@ -12,7 +12,8 @@ function realpath(filepath) {
     return promisify(fs.realpath.native)(filepath).catch(function(err) {
       // -4068: EISDIR: illegal operation on a directory, realpath
       if (err.errno !== -4068) {
-        /* Probably RAM-disk on windows.
+        /* If errno === -4068,
+        Probably RAM-disk on windows.
          Go straight to the default js
          implementation.  Otherwise the
          fsBinding.realpath call may cause
