@@ -30,8 +30,10 @@ function realpathSync(filepath) {
   }
 
   const fsBinding = process.binding('fs');
+  
+  const isWin = process.platform === "win32";
 
-  if (fsBinding.realpath) {
+  if (fsBinding.realpath && !isWin) {
     try {
       return fsBinding.realpath(filepath, 'utf8');
     } catch (err) {
