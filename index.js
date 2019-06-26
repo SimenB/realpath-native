@@ -16,14 +16,15 @@ function isWinRamDiskError(err) {
   return err.errno === -4068;
 }
 
-function realpath(filepath, skipToDefault) {
+// Implementation functions
+function realpathImpl(filepath, skipToDefault) {
   if (!skipToDefault) {
     if (typeof fs.realpath.native === 'function') {
-      return promisify(fs.realpath.native)(filepath).catch(function(err) {
+      return promisify(fs.realpath.native)(filepath).catch(function (err) {
         // Call this function again and skip straight to the default
         // js behavior if we've encountered the Windows RAMdisk situation
         if (isWinRamDiskError(err)) {
-          return realpath(filepath, true);
+          return realpathImpl(filepath, true);
         }
       });
     }
@@ -44,7 +45,7 @@ function realpath(filepath, skipToDefault) {
   return promisiedFsRealpath(filepath);
 }
 
-function realpathSync(filepath, skipToDefault) {
+function realpathSyncImpl(filepath, skipToDefault) {
   if (!skipToDefault) {
     try {
       if (typeof fs.realpathSync.native === 'function') {
@@ -54,7 +55,7 @@ function realpathSync(filepath, skipToDefault) {
       // Call this function again and skip straight to the default
       // js behavior if we've encountered the Windows RAMdisk situation
       if (isWinRamDiskError(err)) {
-        return realpathSync(filepath, true);
+        return realpathSyncImpl(filepath, true);
       }
     }
 
@@ -70,6 +71,15 @@ function realpathSync(filepath, skipToDefault) {
   }
 
   return fs.realpathSync(filepath);
+}
+
+// Public API functions
+function realpath(filepath) {
+  return realpathImpl(filepath);
+}
+
+function realpathSync(filepath) {
+  return realpathSyncImpl(filepath);
 }
 
 module.exports = realpath;
