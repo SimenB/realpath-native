@@ -3,9 +3,9 @@ import test from 'ava';
 import realpath from '.';
 
 test('async', async t => {
-  t.is(path.basename(await realpath('fixture.js')), 'test.js');
+  t.is(path.basename(await realpath('fixture.js')), 'fixture.js');
 });
 
 test('sync', t => {
-  t.is(path.basename(realpath.sync('fixture.js')), 'test.js');
+  t.is(path.basename(realpath.sync('fixture.js')), 'fixture.js');
 });
