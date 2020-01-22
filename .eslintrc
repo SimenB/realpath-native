@@ -1,6 +1,10 @@
 {
   "root": true,
   "extends": ["simenb-base", "simenb-node"],
+  "rules": {
+    "node/no-deprecated-api": "off",
+    "node/no-unsupported-features/node-builtins": "off"
+  },
   "overrides": [{
     "files": ["test.js"],
     "env": {
@@ -14,7 +18,8 @@
       "node/no-unsupported-features": ["error", {
         "version": 8,
         "ignores": ["modules"]
-      }]
+      }],
+      "node/no-unsupported-features/es-syntax": "off"
     }
   }]
 }
