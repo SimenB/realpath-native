@@ -15,14 +15,11 @@
     "realpath"
   ],
   "engines": {
-    "node": ">=4"
+    "node": ">=8"
   },
   "scripts": {
     "lint": "eslint .",
     "test": "eslint . && ava"
-  },
-  "dependencies": {
-    "util.promisify": "^1.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^6.0.2",
