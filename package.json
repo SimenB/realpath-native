@@ -29,7 +29,7 @@
     "eslint-config-simenb-base": "^15.0.1",
     "eslint-config-simenb-node": "^2.0.0",
     "husky": "^3.1.0",
-    "lint-staged": "^9.5.0",
+    "lint-staged": "^10.0.9",
     "prettier": "^1.19.1"
   },
   "commitlint": {
