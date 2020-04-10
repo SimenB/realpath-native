@@ -28,7 +28,7 @@
     "eslint": "^6.8.0",
     "eslint-config-simenb-base": "^15.0.1",
     "eslint-config-simenb-node": "^2.0.0",
-    "husky": "^3.1.0",
+    "husky": "^4.2.5",
     "lint-staged": "^9.5.0",
     "prettier": "^1.19.1"
   },
