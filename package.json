@@ -24,7 +24,7 @@
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
-    "ava": "^2.4.0",
+    "ava": "^3.8.1",
     "eslint": "^6.8.0",
     "eslint-config-simenb-base": "^15.0.1",
     "eslint-config-simenb-node": "^2.0.0",
