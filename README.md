@@ -1,5 +1,7 @@
 # realpath-native
 
+> This module is no longer necessary as all current releases of Node supports `fs.realpath.native` now.
+
 > Use the system's native `realpath`
 
 [![NPM Version][npm-image]][npm-url]
